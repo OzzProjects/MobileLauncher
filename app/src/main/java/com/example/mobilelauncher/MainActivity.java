@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setupViewPager(){
         viewPager= findViewById(R.id.viewpager);
-        viewPagerAdapter=new ViewPagerAdapter();
+        viewPagerAdapter=new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
     }
 
