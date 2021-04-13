@@ -11,6 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="731dp"
         android:id="@+id/grid_viewpager"
+        android:numColumns="5"
+        android:layout_gravity="center"
+        android:stretchMode="columnWidth"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

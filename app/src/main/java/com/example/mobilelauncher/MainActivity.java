@@ -42,15 +42,15 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG,"Application: "+appName);
         }
 
-        setupViewPager();
+        setupViewPager(appList);
 
 
     }
 
 
-    public void setupViewPager(){
+    public void setupViewPager(List<ResolveInfo> appList){
         viewPager= findViewById(R.id.viewpager);
-        viewPagerAdapter=new ViewPagerAdapter(this);
+        viewPagerAdapter=new ViewPagerAdapter(this,appList);
         viewPager.setAdapter(viewPagerAdapter);
     }
 
