@@ -40,9 +40,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public List<ResolveInfo> getBottomAppList(){
-        List<ResolveInfo> collapsedBottomList=getAppList().subList(0,8);
-        return collapsedBottomList;
+    public List<App> createAppList(List<ResolveInfo> appList, int bottomNum){
+        List<App> newList=new ArrayList<>();
+        if(bottomNum!=0){
+            for (int i = 0; i < 4; i++) {
+                newList.add(new App(appList.get(i).activityInfo.loadLabel(getPackageManager()).toString() , appList.get(i).activityInfo.packageName , appList.get(i).activityInfo.loadIcon(getPackageManager())));
+            }
+        }else {
+            for (int i = 0; i < appList.size(); i++) {
+                newList.add(new App(appList.get(i).activityInfo.loadLabel(getPackageManager()).toString() , appList.get(i).activityInfo.packageName , appList.get(i).activityInfo.loadIcon(getPackageManager())));
+            }
+        }
+        return newList;
+    }
+
+    public List<App> getBottomAppList(){
+        List<ResolveInfo> collapsedBottomList=getAppList().subList(0,4);
+        List<App> newList=createAppList(collapsedBottomList,4);
+
+        for(int i=0; i<4;i++){
+            newList.add(new App("App" + i, "com.android.App" + i, getResources().getDrawable(R.mipmap.ic_launcher) ));
+        }
+
+        return newList;
     }
 
     public List<ResolveInfo> getAppList(){
@@ -54,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void setupViewPager(){
         viewPager= findViewById(R.id.viewpager);
-        List<ResolveInfo> appList=getAppList();
-        viewPagerAdapter=new ViewPagerAdapter(this,appList);
+        List<App> newList=createAppList(getAppList(),0);
+        viewPagerAdapter=new ViewPagerAdapter(this,newList);
         viewPager.setAdapter(viewPagerAdapter);
     }
 

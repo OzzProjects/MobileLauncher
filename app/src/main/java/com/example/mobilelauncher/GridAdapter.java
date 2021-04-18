@@ -16,9 +16,9 @@ import java.util.List;
 
 public class GridAdapter extends BaseAdapter {
     Context context;
-    List<ResolveInfo> appList;
+    List<App> appList;
 
-    public GridAdapter(Context context, List<ResolveInfo> appList) {
+    public GridAdapter(Context context, List<App> appList) {
         this.context = context;
         this.appList = appList;
     }
@@ -47,8 +47,8 @@ public class GridAdapter extends BaseAdapter {
         ImageView image = convertView.findViewById(R.id.image);
         TextView name =convertView.findViewById(R.id.name);
 
-        image.setImageDrawable(appList.get(position).activityInfo.loadIcon(context.getPackageManager()));
-        name.setText(appList.get(position).activityInfo.loadLabel(context.getPackageManager()).toString());
+        image.setImageDrawable(appList.get(position).getImage());
+        name.setText(appList.get(position).getName());
 
 
         return convertView;

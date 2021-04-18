@@ -17,9 +17,9 @@ import java.util.List;
 public class ViewPagerAdapter extends PagerAdapter {
 
     Context context;
-    List<ResolveInfo> appList;
+    List<App> appList;
 
-    public ViewPagerAdapter(Context context, List<ResolveInfo> appList){
+    public ViewPagerAdapter(Context context, List<App> appList){
         this.context = context;
         this.appList = appList;
     }
@@ -53,11 +53,11 @@ public class ViewPagerAdapter extends PagerAdapter {
         return view==object;
     }
 
-    public ArrayList<List<ResolveInfo>> getEachPageApp(){
-        ArrayList<List<ResolveInfo>> listOfApps =new ArrayList<>();
+    public ArrayList<List<App>> getEachPageApp(){
+        ArrayList<List<App>> listOfApps =new ArrayList<>();
 
-        List<ResolveInfo> pageOne=appList.subList(0,16);
-        List<ResolveInfo> pageTwo=appList.subList(17,26);
+        List<App> pageOne=appList.subList(0,16);
+        List<App> pageTwo=appList.subList(17,26);
 
         listOfApps.add(pageOne);
         listOfApps.add(pageTwo);
