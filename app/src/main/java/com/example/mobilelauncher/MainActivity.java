@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
     BottomSheetBehavior bottomSheetBehavior;
-
+    GridView bottomGrid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         bottomSheetBehavior.setPeekHeight(400);
         bottomSheetBehavior.setHideable(false);
 
-        final GridView bottomGrid=findViewById(R.id.bottomGrid);
+        bottomGrid=findViewById(R.id.bottomGrid);
         bottomGrid.setAdapter(new GridAdapter(this,getBottomAppList()));
         int[] locationOnScreen = new int[]{0,0};
 
@@ -120,5 +120,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void itemPress(App app){
+        Intent launchApp=getApplicationContext().getPackageManager().getLaunchIntentForPackage(app.getPackageName());
+        if(launchApp!=null){
+            getApplicationContext().startActivity(launchApp);
+        }
+    }
 
 }

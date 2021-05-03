@@ -2,11 +2,13 @@ package com.example.mobilelauncher;
 
 import android.content.Context;
 import android.content.pm.ResolveInfo;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -46,12 +48,24 @@ public class GridAdapter extends BaseAdapter {
         }
         ImageView image = convertView.findViewById(R.id.image);
         TextView name =convertView.findViewById(R.id.name);
+        LinearLayout layout=convertView.findViewById(R.id.app_layout);
 
         image.setImageDrawable(appList.get(position).getImage());
         name.setText(appList.get(position).getName());
 
 
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)context).itemPress(appList.get(position));
+            }
+        });
+
         return convertView;
     }
+
+
+
+
 
 }
