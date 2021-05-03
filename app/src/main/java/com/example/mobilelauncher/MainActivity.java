@@ -42,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
     public List<App> createAppList(List<ResolveInfo> appList, int bottomNum){
         List<App> newList=new ArrayList<>();
-        if(bottomNum!=0){
-            for (int i = 0; i < 4; i++) {
-                newList.add(new App(appList.get(i).activityInfo.loadLabel(getPackageManager()).toString() , appList.get(i).activityInfo.packageName , appList.get(i).activityInfo.loadIcon(getPackageManager())));
-            }
-        }else {
+        if(bottomNum==0) {
             for (int i = 0; i < appList.size(); i++) {
+                newList.add(new App(appList.get(i).activityInfo.loadLabel(getPackageManager()).toString(), appList.get(i).activityInfo.packageName, appList.get(i).activityInfo.loadIcon(getPackageManager())));
+            }
+        }else{
+            for (int i = 0; i < 4; i++) {
                 newList.add(new App(appList.get(i).activityInfo.loadLabel(getPackageManager()).toString() , appList.get(i).activityInfo.packageName , appList.get(i).activityInfo.loadIcon(getPackageManager())));
             }
         }
@@ -55,13 +55,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public List<App> getBottomAppList(){
-        List<ResolveInfo> collapsedBottomList=getAppList().subList(0,4);
-        List<App> newList=createAppList(collapsedBottomList,4);
-
-        for(int i=0; i<4;i++){
-            newList.add(new App("App" + i, "com.android.App" + i, getResources().getDrawable(R.mipmap.ic_launcher) ));
-        }
-
+        List<ResolveInfo> collapsedBottomList=getAppList().subList(0,8);
+        List<App> newList=createAppList(collapsedBottomList,0);
         return newList;
     }
 
@@ -126,5 +121,6 @@ public class MainActivity extends AppCompatActivity {
             getApplicationContext().startActivity(launchApp);
         }
     }
+
 
 }

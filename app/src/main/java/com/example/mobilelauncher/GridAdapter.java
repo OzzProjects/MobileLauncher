@@ -3,12 +3,15 @@ package com.example.mobilelauncher;
 import android.content.Context;
 import android.content.pm.ResolveInfo;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -19,6 +22,7 @@ import java.util.List;
 public class GridAdapter extends BaseAdapter {
     Context context;
     List<App> appList;
+
 
     public GridAdapter(Context context, List<App> appList) {
         this.context = context;
@@ -60,6 +64,7 @@ public class GridAdapter extends BaseAdapter {
                 ((MainActivity)context).itemPress(appList.get(position));
             }
         });
+
 
         return convertView;
     }
