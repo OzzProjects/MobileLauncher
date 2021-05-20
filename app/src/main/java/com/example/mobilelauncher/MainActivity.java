@@ -4,17 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -29,26 +33,40 @@ public class MainActivity extends AppCompatActivity {
     ViewPagerAdapter viewPagerAdapter;
     BottomSheetBehavior bottomSheetBehavior;
     GridView bottomGrid;
+    int bottomHeight=300;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
+        getSupportActionBar();
+
         setupViewPager();
         setupBottomSheet();
 
+    }
+
+
+
+
+
+    public String shortenName(String name){
+        if( name.length()>12){
+            String newName= name.substring(0,10).concat("..");
+            return newName;
+        }
+        return name;
     }
 
     public List<App> createAppList(List<ResolveInfo> appList, int bottomNum){
         List<App> newList=new ArrayList<>();
         if(bottomNum==0) {
             for (int i = 0; i < appList.size(); i++) {
-                newList.add(new App(appList.get(i).activityInfo.loadLabel(getPackageManager()).toString(), appList.get(i).activityInfo.packageName, appList.get(i).activityInfo.loadIcon(getPackageManager())));
+                newList.add(new App(shortenName(appList.get(i).activityInfo.loadLabel(getPackageManager()).toString()), appList.get(i).activityInfo.packageName, appList.get(i).activityInfo.loadIcon(getPackageManager())));
             }
         }else{
             for (int i = 0; i < 4; i++) {
-                newList.add(new App(appList.get(i).activityInfo.loadLabel(getPackageManager()).toString() , appList.get(i).activityInfo.packageName , appList.get(i).activityInfo.loadIcon(getPackageManager())));
+                newList.add(new App( shortenName(appList.get(i).activityInfo.loadLabel(getPackageManager()).toString()) , appList.get(i).activityInfo.packageName , appList.get(i).activityInfo.loadIcon(getPackageManager())));
             }
         }
         return newList;
@@ -75,10 +93,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setupBottomSheet(){
+
         final View bottomsheet=findViewById(R.id.bottomsheet);
         bottomSheetBehavior=BottomSheetBehavior.from(bottomsheet);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        bottomSheetBehavior.setPeekHeight(400);
+        bottomSheetBehavior.setPeekHeight(bottomHeight);
         bottomSheetBehavior.setHideable(false);
 
         bottomGrid=findViewById(R.id.bottomGrid);
@@ -104,8 +123,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
             }
-
-
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
                 bottomGrid.getLocationOnScreen(locationOnScreen);

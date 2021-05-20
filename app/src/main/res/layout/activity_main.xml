@@ -20,7 +20,6 @@
                 android:id="@+id/background_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/ic_animation_back"
                 android:scaleType="centerCrop" />
 
             <androidx.viewpager.widget.ViewPager
@@ -30,11 +29,11 @@
 
         </FrameLayout>
 
-        <FrameLayout
+       <FrameLayout
             android:id="@+id/bottomsheet"
-            style="@style/Widget.MaterialComponents.BottomSheet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.Design.BottomSheet.Modal"
             app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
             <LinearLayout
@@ -45,7 +44,7 @@
                 <Button
                     android:id="@+id/btn_bottom"
                     android:layout_width="match_parent"
-                    android:layout_height="0px"
+                    android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     app:backgroundTint="#2B2B2B" />
