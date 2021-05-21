@@ -15,6 +15,6 @@ app.
 ## Ongoing Development
 
 The project currently recreates the default home interface with a
-bottom view window that acts as a hub for the user to keep key applicaions.
+bottom window that acts as a hub for the user to keep key applicaions.
 As the project is currently under development, the next goal is to 
 allow populating and removing apps through user control.
